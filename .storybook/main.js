@@ -1,3 +1,5 @@
+const path = require("path");
+
 module.exports = {
   stories: [
     "../stories/**/*.stories.mdx",
@@ -22,4 +24,10 @@ module.exports = {
     builder: "@storybook/builder-webpack5",
   },
   staticDirs: ["../public"],
+  webpackFinal: async (config) => {
+    config.resolve.alias = {
+      "@": path.resolve(__dirname, "../"),
+    };
+    return config;
+  },
 };
