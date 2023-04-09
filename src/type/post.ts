@@ -1,7 +1,7 @@
 import { Dayjs } from "dayjs";
 import { TagType } from "./tag";
 
-// すでにParseしてDBに保存されているデータの型
+// Markdownをパースした結果の型
 export type PostBodyType =
   | {
       heading: string;

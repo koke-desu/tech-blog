@@ -1,4 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+.env.*
+
+# Typescript Codegenのために必要。API Keyが必要なので、.gitignoreに追加。（.env.localで管理しようとしたが、scriptからは干渉が出来な層だったのでファイルごとignore）
+getContentfulEnvironment.js
 
 # dependencies
 /node_modules
