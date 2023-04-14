@@ -17,4 +17,5 @@ export type PostType = {
   createdAt: Dayjs;
   updatedAt: Dayjs;
   body: PostBodyType[];
+  thumbnail: string;
 };
