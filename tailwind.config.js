@@ -15,6 +15,7 @@ module.exports = {
       "p-yellow": "#FFF89A",
       "p-orange": "#FFB2A6",
       "p-pink": "#FF8AAE",
+      gray: "#A9A9A9",
       text: "#414141",
       bg: "#F8F4F3",
     },

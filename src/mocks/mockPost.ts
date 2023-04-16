@@ -15,6 +15,7 @@ export const mockPost: PostType = {
   createdAt: dayjs(),
   updatedAt: dayjs(),
   tags: [tag, tag],
+  thumbnail: "https://placehold.jp/150x150.png",
   body: [
     {
       level: 1,

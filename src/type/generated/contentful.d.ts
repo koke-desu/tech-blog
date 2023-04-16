@@ -20,6 +20,9 @@ export interface IPostFields {
 
   /** tags */
   tags?: ITag[] | undefined;
+
+  /** thumbnail */
+  thumbnail?: Asset | undefined;
 }
 
 export interface IPost extends Entry<IPostFields> {
