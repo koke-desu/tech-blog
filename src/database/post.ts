@@ -1,6 +1,7 @@
 import { createClient } from "contentful";
 import { PostType } from "@/src/type/post";
 import dayjs from "dayjs";
+import { IPostFields } from "../type/generated/contentful";
 
 // contentfulから記事のデータ一覧を取得する。
 export const getPosts = async (): Promise<PostType[]> => {
@@ -9,7 +10,7 @@ export const getPosts = async (): Promise<PostType[]> => {
     accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN || "",
   });
 
-  const entries = await client.getEntries<PostType>({
+  const entries = await client.getEntries<IPostFields>({
     content_type: "post",
   });
 
@@ -17,10 +18,17 @@ export const getPosts = async (): Promise<PostType[]> => {
     return {
       id: entry.sys.id,
       title: entry.fields.title,
-      tags: entry.fields.tags,
+      tags:
+        entry.fields.tags?.map((tag) => ({
+          icon: tag.fields.icon.fields.file.url,
+          id: tag.fields.id,
+          label: tag.fields.label,
+          link: "",
+        })) || [],
+      thumbnail: entry.fields.thumbnail?.fields.file.url || "",
       createdAt: dayjs(entry.sys.createdAt),
       updatedAt: dayjs(entry.sys.updatedAt),
-      body: entry.fields.body,
+      body: [entry.fields.body],
     };
   });
 };
