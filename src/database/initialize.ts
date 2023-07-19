@@ -1,5 +1,4 @@
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -12,9 +11,14 @@ const firebaseConfig = {
   measurementId: "G-4V7L44EP77",
 };
 
+const initFirebase = () => {
+  if (typeof window !== undefined) {
+    initializeApp(firebaseConfig);
+  }
+};
+
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 
 const db = getFirestore(app);
 
-export default db;
+export { initFirebase, db };
