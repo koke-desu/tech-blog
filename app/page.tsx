@@ -1,12 +1,12 @@
 import PostList from "@/src/components/PostList";
-import { getPosts } from "@/src/database/post";
+import { Suspense } from "react";
 
 const Home = async () => {
-  const posts = await getPosts();
-
   return (
     <main>
-      <PostList posts={posts} />
+      <Suspense fallback={<div>loading...</div>}>
+        <PostList />
+      </Suspense>
     </main>
   );
 };
