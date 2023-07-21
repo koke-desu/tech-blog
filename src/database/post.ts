@@ -1,19 +1,17 @@
 import { PostType } from "@/src/type/post";
 import dayjs from "dayjs";
-import { getDocs, collection } from "firebase/firestore";
-import { useState, useEffect } from "react";
-import db from "./initialize";
+import { getDocs, collection, getFirestore } from "firebase/firestore";
+import { db } from "./initialize";
 
-export const useGetPosts = (): PostType[] => {
-  const [posts, setPosts] = useState<PostType[]>([]);
-  useEffect(() => {
-    getDocs(collection(db, "posts")).then((docs) => {
-      const posts = docs.docs.map((doc) => {
-        return doc.data() as PostType;
-      });
-      setPosts(posts);
+export const getPosts = (): Promise<PostType[]> => {
+  return getDocs(collection(db, "posts")).then((docs) => {
+    return docs.docs.map((doc) => {
+      const data = doc.data();
+      return {
+        ...data,
+        createdAt: dayjs(data.createdAt.toDate()),
+        updatedAt: dayjs(data.updatedAt.toDate()),
+      } as PostType;
     });
-  }, []);
-
-  return posts;
+  });
 };
