@@ -3,11 +3,9 @@ import { Suspense } from "react";
 
 const Home = async () => {
   return (
-    <main>
-      <Suspense fallback={<div>loading...</div>}>
-        <PostList />
-      </Suspense>
-    </main>
+    <Suspense fallback={<div>loading...</div>}>
+      <PostList />
+    </Suspense>
   );
 };
 
